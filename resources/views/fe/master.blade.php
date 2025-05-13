@@ -47,6 +47,43 @@
   <link id="pagestyle" rel="stylesheet" href="{{ asset ('fe/css/styles.css') }}">
 
 </head>
+
+    <!-- Header -->
+    @if ($title === 'Home')
+    <header id="header" class="header">
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-container">
+                            <h1>DESA <span id="js-rotating">WISATA, INDONESIA, INDAH</span></h1>
+                            <p class="p-heading p-large">Discover the enchanting beauty of Indonesia — a land of thousands of islands, rich cultures, and breathtaking natural wonders waiting to be explored with us.</p>
+                            <a class="btn-solid-lg page-scroll" href="/package-%-dwp">DISCOVER</a>
+                        </div>
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    <!-- end of header -->
+
+    @else
+    <header id="header" class="header">
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-container">
+                            <h1>Desa Danau Toba</h1>
+                        </div>
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    <!-- end of header -->
+
+    @endif
 <body data-spy="scroll" data-target=".fixed-top">
     
     <!-- Preloader -->
@@ -94,6 +131,12 @@
                         <li>
                             <a class="dropdown-item {{ $title === 'Packages' ? 'active' : '' }}" href="/package-%-dwp">
                                 Package
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item {{ $title === 'Homestay' ? 'active' : '' }}" href="/homestay-%-dwp">
+                                Homestay
                             </a>
                         </li>
                         <li><hr class="dropdown-divider"></li>
@@ -149,45 +192,6 @@
                     <!-- end of navbar -->
     <!-- end of navbar -->
 
-
-    <!-- Header -->
-    @if ($title === 'Home')
-    <header id="header" class="header">
-        <div class="header-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-container">
-                            <h1>DESA <span id="js-rotating">WISATA, INDONESIA, INDAH</span></h1>
-                            <p class="p-heading p-large">Discover the enchanting beauty of Indonesia — a land of thousands of islands, rich cultures, and breathtaking natural wonders waiting to be explored with us.</p>
-                            <a class="btn-solid-lg page-scroll" href="/package-%-dwp">DISCOVER</a>
-                        </div>
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-            </div> <!-- end of container -->
-        </div> <!-- end of header-content -->
-    </header> <!-- end of header -->
-    <!-- end of header -->
-
-    @else
-    <header id="header" class="header">
-        <div class="header-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-container">
-                            <h1>Desa Danau Toba</h1>
-                        </div>
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-            </div> <!-- end of container -->
-        </div> <!-- end of header-content -->
-    </header> <!-- end of header -->
-    <!-- end of header -->
-
-    @endif
-
-
     {{-- Logic Start --}}
 
     @if ($title==='Home' or $title==='About')
@@ -206,7 +210,6 @@
     @endif
     @if ($title==='Packages')
         @yield('package')
-        @yield('perfect-package')
     @endif
     @if ($title==='News')
         @yield('news')
@@ -216,6 +219,9 @@
     @endif
     @if ($title==='Discount')
         @yield('discount')
+    @endif
+    @if ($title==='Homestay')
+        @yield('homestay')
     @endif
     
 
@@ -321,5 +327,6 @@
     <script src="{{ asset('fe/js/scripts.js') }}"></script> <!-- Custom scripts -->
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
 </body>
 </html>

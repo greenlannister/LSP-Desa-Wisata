@@ -1,4 +1,4 @@
 @extends('fe.master')
-@section(section: 'discount')
+@section('discount')
     @include('fe.discount')
 @endsection

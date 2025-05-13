@@ -8,7 +8,7 @@ class Diskon extends Model
 {
     protected $table = 'diskons';
 
-    protected $fillable = ['nama_diskon', 'kode_diskon', 'persentase_diskon', 'tanggal_mulai', 'tanggal_berakhir', 'deskripsi', 'aktif'];
+    protected $fillable = ['nama_diskon', 'kode_diskon', 'persentase_diskon', 'foto', 'tanggal_mulai', 'tanggal_berakhir', 'deskripsi', 'aktif'];
 
     public function reservasis(){
         return $this->hasMany(Diskon::class, 'diskon_id');

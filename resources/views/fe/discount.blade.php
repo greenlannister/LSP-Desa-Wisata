@@ -8,92 +8,45 @@
       </div> <!-- end of row -->
 
       <div class="row">
+        <div class="col-12 mt-4">
           <div class="row">
-            <div class="col-12 mt-4">
-              <div class="row">
-                <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-                  <div class="card card-blog card-plain">
-                    <div class="card-header p-0 m-2">
-                      <a class="d-block shadow-xl border-radius-xl">
-                        <img src="{{ asset('/assets/img/home-decor-1.jpg') }}" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
-                      </a>
-                    </div>
-                    <div class="card-body p-3">
-                      <p class="mb-0 text-sm">Project #2</p>
-                      <a href="javascript:;">
-                        <h5>
-                          Modern
-                        </h5>
-                      </a>
-                      <p class="mb-4 text-sm">
-                        As Uber works through a huge amount of internal management turmoil.
-                      </p>
-                    </div>
-                  </div>
+          @isset($diskons)
+            @foreach($diskons as $diskon)
+            <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+              <div class="card card-blog card-plain">
+                <div class="card-header p-0 m-2">
+                  <a class="d-block shadow-xl border-radius-xl">
+                    @if($diskon->foto)
+                      <img src="{{ asset('storage/' . $diskon->foto) }}" alt="Foto Diskon" class="img-fluid shadow border-radius-lg">
+                    @else
+                      <img src="{{ asset('/assets/img/home-decor-1.jpg') }}" alt="Default Image" class="img-fluid shadow border-radius-lg">
+                    @endif
+                  </a>
                 </div>
-                <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-                  <div class="card card-blog card-plain">
-                    <div class="card-header p-0 m-2">
-                      <a class="d-block shadow-xl border-radius-xl">
-                        <img src="{{ asset('/assets/img/home-decor-2.jpg') }}" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
-                      </a>
-                    </div>
-                    <div class="card-body p-3">
-                      <p class="mb-0 text-sm">Project #1</p>
-                      <a href="javascript:;">
-                        <h5>
-                          Scandinavian
-                        </h5>
-                      </a>
-                      <p class="mb-4 text-sm">
-                        Music is something that every person has his or her own specific opinion about.
-                      </p>
-                    </div>
+                <div class="card-body p-3">
+                  <p class="mb-0 text-sm">{{ $diskon->nama_diskon }}</p>
+                  <h5>
+                    {{ $diskon->kode_diskon }}
+                  </h5>
+                  <p class="mb-0 text-sm">{{ $diskon->persentase_diskon }}%</p>
+                  <p class="mb-4 text-sm">
+                    {{ $diskon->deskripsi }}
+                  </p>
+                  <div class="d-flex justify-content-between">
+                    <span class="text-xs">Mulai: {{ $diskon->tanggal_mulai->format('d M Y') }}</span>
+                    <span class="text-xs">Berakhir: {{ $diskon->tanggal_berakhir->format('d M Y') }}</span>
                   </div>
-                </div>
-                <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-                  <div class="card card-blog card-plain">
-                    <div class="card-header p-0 m-2">
-                      <a class="d-block shadow-xl border-radius-xl">
-                        <img src="{{asset ('/assets/img/home-decor-3.jpg') }}" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
-                      </a>
-                    </div>
-                    <div class="card-body p-3">
-                      <p class="mb-0 text-sm">Project #3</p>
-                      <a href="javascript:;">
-                        <h5>
-                          Minimalist
-                        </h5>
-                      </a>
-                      <p class="mb-4 text-sm">
-                        Different people have different taste, and various types of music. Music is life.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-                  <div class="card card-blog card-plain">
-                    <div class="card-header p-0 m-2">
-                      <a class="d-block shadow-xl border-radius-xl">
-                        <img src="https://images.unsplash.com/photo-1606744824163-985d376605aa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
-                      </a>
-                    </div>
-                    <div class="card-body p-3">
-                      <p class="mb-0 text-sm">Project #4</p>
-                      <a href="javascript:;">
-                        <h5>
-                          Gothic
-                        </h5>
-                      </a>
-                      <p class="mb-4 text-sm">
-                        Why would anyone pick blue over pink? Pink is obviously a better color.
-                      </p>
-                    </div>
+                  <div class="mt-2">
+                    <span class="badge badge-sm {{ $diskon->aktif ? 'bg-gradient-success' : 'bg-gradient-secondary' }}">
+                      {{ $diskon->aktif ? 'Aktif' : 'Tidak Aktif' }}
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
+            @endforeach
+          @endisset
           </div>
+        </div>
       </div>
-  </div>
 </div>

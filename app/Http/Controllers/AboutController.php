@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Karyawan;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -11,8 +12,12 @@ class AboutController extends Controller
      */
     public function index()
     {
+        
+        $karyawans = Karyawan::all();
+
         return view('about.index', [
-            'title' => 'About',
+            'karyawans' => $karyawans,
+            'title' => 'About'
         ]);
     }
 

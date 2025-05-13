@@ -1,5 +1,5 @@
 <!-- resources/views/admin/diskon/modal-create.blade.php -->
-<form action="{{ route('diskon.management') }}" method="POST">
+<form action="{{ route('diskon.management') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="modal fade" id="ModalDiskon" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -45,6 +45,14 @@
                         <label for="tanggal_berakhir" class="col-sm-3 col-form-label">Tanggal Berakhir</label>
                         <div class="col-sm-9">
                             <input type="date" class="form-control" name="tanggal_berakhir" id="tanggal_berakhir" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3 row">
+                        <label for="foto" class="col-sm-3 col-form-label">Foto Diskon</label>
+                        <div class="col-sm-9">
+                            <input type="file" class="form-control" name="foto" id="foto" accept="image/*">
+                            <small class="text-muted">Format: JPG, PNG, JPEG. Maksimal 2MB</small>
                         </div>
                     </div>
                     

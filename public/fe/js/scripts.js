@@ -359,4 +359,31 @@
 		$(this).blur();
 	});
 
+    $(document).ready(function() {
+        // Inisialisasi grid
+        var $grid = $('.grid').isotope({
+            itemSelector: '.element-item',
+            layoutMode: 'fitRows'
+        });
+        
+        // Filter items
+        $('.button-group').on('click', '.button', function() {
+            var filterValue = $(this).attr('data-filter');
+            $grid.isotope({ filter: filterValue });
+        });
+        
+        // Inisialisasi lightbox
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+
 })(jQuery);

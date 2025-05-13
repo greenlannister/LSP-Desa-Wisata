@@ -3,7 +3,7 @@
 <div class="modal fade" id="ModalDiskonEdit-{{ $diskon->id }}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form action="{{ route('diskon.update', $diskon->id) }}" method="POST">
+            <form action="{{ route('diskon.update', $diskon->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-header">
@@ -38,6 +38,17 @@
                         <div class="col-md-6 mb-3">
                             <label>Tanggal Berakhir</label>
                             <input type="date" name="tanggal_berakhir" value="{{ $diskon->tanggal_berakhir->format('Y-m-d') }}" class="form-control" required>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label>Foto Diskon</label>
+                            <input type="file" class="form-control" name="foto" id="foto" accept="image/*">
+                            @if($diskon->foto)
+                                <div class="mt-2">
+                                    <img src="{{ asset('storage/diskons/' . $diskon->foto) }}" alt="Foto Diskon" style="max-width: 200px;">
+                                    <small class="d-block">Foto saat ini</small>
+                                </div>
+                            @endif
+                            <small class="text-muted">Biarkan kosong jika tidak ingin mengubah foto</small>
                         </div>
                         <div class="col-md-12 mb-3">
                             <label>Deskripsi</label>

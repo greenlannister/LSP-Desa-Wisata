@@ -839,27 +839,28 @@ class BendaharaController extends Controller
             'diskons' => $diskons
         ]);
     }
-
+    
     function Diskon(Request $request){
-        $diskon = $request->validate([
+        $request->validate([
             'kode_diskon' => ['required', 'string', 'max:50', 'unique:diskons'],
             'nama_diskon' => ['required', 'string', 'max:100'],
             'persentase_diskon' => ['required', 'numeric', 'min:0', 'max:100'],
             'tanggal_mulai' => ['required', 'date'],
             'tanggal_berakhir' => ['required', 'date', 'after_or_equal:tanggal_mulai'],
+            'foto' => ['nullable', 'image'],
             'deskripsi' => ['nullable', 'string'],
             'aktif' => ['required', 'boolean']
         ]);
-        $diskon['kode_diskon'] = strip_tags($diskon['kode_diskon']);
-        $diskon['nama_diskon'] = strip_tags($diskon['nama_diskon']);
-        $diskon['persentase_diskon'] = (float) $diskon['persentase_diskon']; 
-        $diskon['tanggal_mulai'] = strip_tags($diskon['tanggal_mulai']);
-        $diskon['tanggal_berakhir'] = strip_tags($diskon['tanggal_berakhir']);
-        $diskon['deskripsi'] = strip_tags($diskon['deskripsi']);
-        $diskon['aktif'] = (bool) $diskon['aktif'];
-
+    
+        $diskonData = $request->except('foto');
+        
+        // Handle file upload
+        if ($request->hasFile('foto')) {
+            $diskonData['foto'] = $request->file('foto')->store('diskons', 'public');
+        }
+    
         try {
-            Diskon::create($diskon);
+            Diskon::create($diskonData);
             
             return redirect()->route('diskon')->with('swal', [
                 'title' => 'Berhasil!',
@@ -871,7 +872,7 @@ class BendaharaController extends Controller
             return back()->withErrors(['error' => 'Gagal menyimpan diskon: ' . $e->getMessage()]);
         }
     }
-
+    
     public function updateDiskon(Request $request, $id){
         $diskon = Diskon::findOrFail($id);
         
@@ -881,12 +882,23 @@ class BendaharaController extends Controller
             'persentase_diskon' => ['required', 'numeric', 'min:0', 'max:100'],
             'tanggal_mulai' => ['required', 'date'],
             'tanggal_berakhir' => ['required', 'date', 'after_or_equal:tanggal_mulai'],
+            'foto' => ['nullable', 'image'],
             'deskripsi' => ['nullable', 'string'],
             'aktif' => ['required', 'boolean']
         ]);
-
+    
+        $updateData = $request->except('foto');
+        
+        // Handle file upload
+        if ($request->hasFile('foto')) {
+            // Hapus foto lama jika ada
+            if ($diskon->foto && Storage::exists('public/' . $diskon->foto)) {
+                Storage::delete('public/' . $diskon->foto);
+            }
+        }
+    
         try {
-            $diskon->update($validasi);
+            $diskon->update($updateData);
             
             return redirect()->route('diskon')->with('swal', [
                 'title' => 'Berhasil!',
@@ -898,15 +910,20 @@ class BendaharaController extends Controller
             return back()->withErrors(['error' => 'Gagal memperbarui diskon: ' . $e->getMessage()]);
         }
     }
-
+    
     function destroyDiskon($id){
         $diskon = Diskon::find($id);
         
         if (!$diskon) {
             return back()->with('error', 'Diskon tidak ditemukan.');
         }
-
+    
         try {
+            // Hapus foto jika ada
+            if ($diskon->foto && Storage::exists('public/' . $diskon->foto)) {
+                Storage::delete('public/' . $diskon->foto);
+            }
+            
             $diskon->delete();
             
             return redirect()->route('diskon')->with('swal', [

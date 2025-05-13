@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Diskon;
 
 class DiscountController extends Controller
 {
@@ -11,8 +12,10 @@ class DiscountController extends Controller
      */
     public function index()
     {
+        $diskons = Diskon::all();
         return view('discount.index', [
             'title' => 'Discount',
+            'diskons' => $diskons
         ]);
     }
 

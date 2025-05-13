@@ -1,8 +1,8 @@
 @extends('fe.master')
-@section(section: 'about')
+@section( 'about')
     @include('fe.about')
 @endsection
-@section(section: 'discount')
+@section( 'discount')
     @include('fe.discount')
 @endsection
 @section('package')
@@ -11,6 +11,6 @@
 @section('testi')
     @include('fe.testi')
 @endsection
-@section(section: 'news')
+@section( 'news')
     @include('fe.news')
 @endsection

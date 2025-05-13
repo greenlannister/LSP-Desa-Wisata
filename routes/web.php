@@ -16,6 +16,7 @@ Route::resource('/home', App\Http\Controllers\HomeController::class);
 Route::resource('/about-%-dwp', App\Http\Controllers\AboutController::class);
 Route::resource('/service-%-dwp', App\Http\Controllers\ServicesController::class);
 Route::resource('/package-%-dwp', App\Http\Controllers\PackagesController::class);
+Route::resource('/homestay-%-dwp', App\Http\Controllers\HomestayController::class);
 Route::resource('/news-%-dwp', App\Http\Controllers\NewsController::class);
 Route::resource('/contact-%-dwp', App\Http\Controllers\ContactController::class);
 Route::resource('/regis-%-dwp', App\Http\Controllers\RegisController::class);

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('tanggal_mulai');
             $table->date('tanggal_berakhir');
             $table->text('deskripsi')->nullable();
+            $table->string('foto')->nullable();
             $table->boolean('aktif')->default(true);
             $table->timestamps();
         });

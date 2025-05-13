@@ -108,17 +108,25 @@
                             <table class="table align-items-center mb-0">
                                 <thead>
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Kode Diskon</th>
-                                        <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Nama Diskon</th>
-                                        <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Persentase</th>
-                                        <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Periode</th>
-                                        <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Status</th>
-                                        <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Actions</th>
+                                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Foto</th>
+                                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Kode Diskon</th>
+                                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Nama Diskon</th>
+                                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Persentase</th>
+                                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Periode</th>
+                                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Status</th>
+                                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($diskons as $diskon)
                                     <tr>
+                                        <td>
+                                          @if($diskon->foto)
+                                            <img src="{{ asset('storage/' . $diskon->foto) }}" class="avatar avatar-s me-3 border-radius-lg" alt="Foto">
+                                          @else
+                                            <img src="{{ asset('assets/img/default-image.jpg') }}" class="avatar avatar-s me-3 border-radius-lg" alt="Default Foto">
+                                          @endif
+                                        </td>
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0">{{ $diskon->kode_diskon }}</p>
                                         </td>
