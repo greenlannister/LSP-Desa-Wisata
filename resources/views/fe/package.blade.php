@@ -175,6 +175,7 @@
                     <p class="testimonial-text">{{ $paket->fasilitas }}</p>
                 </div>
                 <a class="btn-outline-reg mfp-close as-button" href="#services">BACK</a> 
+                <a class="btn-outline-reg mfp-close as-button" href="#">BOOK NOW</a> 
             </div>
         </div>
     </div>
