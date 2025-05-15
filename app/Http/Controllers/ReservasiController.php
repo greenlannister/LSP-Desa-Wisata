@@ -8,6 +8,7 @@ use App\Models\Paket_Wisata;
 use App\Models\Diskon;
 use App\Models\Reservasi;
 use App\Models\Jenis_Pembayaran;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -143,6 +144,40 @@ class ReservasiController extends Controller
             ->update(['status_reservasi' => 'Selesai']);
             
         return response()->json(['message' => 'Status reservasi diperbarui', 'updated' => $updated]);
+    }
+
+    public function downloadNota($id)
+{
+        // Ambil data reservasi dengan relasi
+        $reservasi = Reservasi::with(['pelanggan', 'diskon', 'paketWisata', 'jenisPembayaran'])
+                        ->where('id', $id)
+                        ->firstOrFail();
+        
+        // Verifikasi bahwa reservasi milik pelanggan yang login
+        if (auth()->user()->id != $reservasi->id_user) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        // Format data untuk nota
+        $data = [
+            'no_nota' => 'NOTA-'.str_pad($reservasi->id, 6, '0', STR_PAD_LEFT),
+            'nama_pelanggan' => $reservasi->pelanggan->nama_pelanggan,
+            'tgl_reservasi' => $reservasi->created_at->format('d/m/Y'),
+            'tgl_mulai' => $reservasi->tgl_mulai_reservasi->format('d/m/Y H:i'),
+            'tgl_selesai' => $reservasi->tgl_selesai_reservasi->format('d/m/Y H:i'),
+            'nama_paket' => $reservasi->paketWisata->nama_paket,
+            'jumlah_peserta' => $reservasi->jumlah_peserta,
+            'harga_paket' => number_format($reservasi->harga, 0, ',', '.'),
+            'diskon' => $reservasi->diskon ? $reservasi->diskon->nama_diskon : '-',
+            'nilai_diskon' => number_format($reservasi->nilai_diskon ?? 0, 0, ',', '.'),
+            'subtotal' => number_format($reservasi->subtotal, 0, ',', '.'),
+            'total_bayar' => number_format($reservasi->total_bayar, 0, ',', '.'),
+            'metode_pembayaran' => $reservasi->jenisPembayaran ? $reservasi->jenisPembayaran->nama_jenis : '-',
+            'status' => $reservasi->status_reservasi,
+        ];
+
+        $pdf = Pdf::loadView('fe.nota', $data);
+        return $pdf->stream('nota-reservasi-'.$reservasi->id.'.pdf');
     }
 
 

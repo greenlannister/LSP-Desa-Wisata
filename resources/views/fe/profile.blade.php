@@ -105,16 +105,24 @@
                 <div class="card">
                     <div class="card-header p-2 ps-3">
                         <div class="d-flex justify-content-between">
-                            <div>
-                                <p class="text-sm mb-0 text-capitalize">Download Nota</p>
-                            </div>
-                            <div class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg">
-                                <i class="material-symbols-rounded opacity-10">weekend</i>
-                            </div>
+                          <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownNota" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-file-pdf me-1"></i> Download Nota
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownNota">
+                                @foreach($reservasis as $reservasi)
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('download.nota', $reservasi->id) }}" target="_blank">
+                                            Nota #{{ str_pad($reservasi->id, 6, '0', STR_PAD_LEFT) }} - 
+                                            {{ $reservasi->created_at->format('d/m/Y') }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-sm btn-outline-primary mt-5" data-bs-toggle="modal" data-bs-target="#reservasiModal">
+                <button class="btn btn-sm btn-outline-primary mt-3" data-bs-toggle="modal" data-bs-target="#reservasiModal">
                   Lihat Reservasi
                 </button>
             </div>

@@ -7,6 +7,9 @@ use App\Models\Objek_Wisata;
 use App\Models\Paket_Wisata;
 use App\Models\Jenis_Pembayaran;
 use App\Models\Diskon;
+use App\Models\Pelanggan;
+use App\Models\Reservasi;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; 
 use App\Models\Penginapan;
@@ -662,8 +665,11 @@ class BendaharaController extends Controller
 
     // Konfirmasi
     function cont4(){
-        return view ('bendahara.cont4', [
-            'title' => 'Bendahara',
+        $reservasis = Reservasi::with(['pelanggan.user', 'paketWisata'])->get();
+
+        return view('bendahara.cont4', [
+            'reservasis' => $reservasis,
+            'title' => 'Bendahara'
         ]);
     }
 

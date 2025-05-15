@@ -43,6 +43,9 @@ Route::middleware(['auth'])->group(function(){
     // Route untuk update status reservasi (bisa dijadikan scheduled task)
     Route::post('/reservasi/update-status', [ReservasiController::class, 'updateStatus'])->name('reservasi.update-status');
 
+    // Nota pelanggan
+    Route::get('/download-nota/{id}', [ReservasiController::class, 'downloadNota'])->name('download.nota');
+
 // Middleware karyawan
 
     // Middleware Owner
