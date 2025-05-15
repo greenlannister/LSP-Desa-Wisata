@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->string('fasilitas');
             $table->integer('harga_per_pack');
+            $table->integer('max_kapasitas');
             $table->text('foto1');
             $table->text('foto2');
             $table->text('foto3');

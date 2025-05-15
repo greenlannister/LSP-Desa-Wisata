@@ -38,6 +38,12 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
+                        <label for="max_kapasitas" class="col-sm-2 col-form-label">Maximum Kapasitas</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control input-soft" name="max_kapasitas" id="max_kapasitas" required>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
                           <label for="foto1" class="col-sm-2 col-form-label">Foto 1</label>
                           <div class="col-sm-10  input-soft">
                               <input type="file" class="form-control" name="foto1" id="foto1">

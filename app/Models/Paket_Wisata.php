@@ -8,9 +8,10 @@ class Paket_Wisata extends Model
 {
     protected $table = 'paket_wisatas';
 
-    protected $fillable = ['nama_paket', 'deskripsi', 'fasilitas', 'harga_per_pack', 'foto1', 'foto2', 'foto3', 'foto4', 'foto5', 'foto6', 'foto7'];
+    protected $fillable = ['nama_paket', 'deskripsi', 'fasilitas', 'harga_per_pack', 'max_kapasitas', 'foto1', 'foto2', 'foto3', 'foto4', 'foto5', 'foto6', 'foto7'];
 
+    // Should be (matches your fillable field):
     public function reservasis(){
-        return $this->hasMany(Paket_Wisata::class, 'paket_wisata_id');
+        return $this->hasMany(Reservasi::class, 'id_paket_wisata');
     }
 }

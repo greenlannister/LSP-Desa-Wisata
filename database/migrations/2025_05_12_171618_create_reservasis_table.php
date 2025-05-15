@@ -16,12 +16,16 @@ return new class extends Migration
             
             // Kolom foreign key
             $table->unsignedBigInteger('id_pelanggan');
+            $table->unsignedBigInteger('id_user'); // Tambahan untuk relasi ke users
             $table->unsignedBigInteger('id_paket_wisata');
             $table->unsignedBigInteger('id_diskon')->nullable();
-            $table->unsignedBigInteger('id_jenis_pembayaran')->nullable(); // Hapus ->after()
+            $table->unsignedBigInteger('id_jenis_pembayaran')->nullable();
             
             // Kolom lainnya
-            $table->dateTime('tanggal_reservasi');
+            $table->string('nama_pelanggan');
+            $table->string('email'); // Dihapus unique()
+            $table->dateTime('tgl_mulai_reservasi');
+            $table->dateTime('tgl_selesai_reservasi');
             $table->decimal('harga', 12, 2);
             $table->integer('jumlah_peserta')->default(1);
             $table->decimal('persentase_diskon', 5, 2)->nullable();
@@ -29,13 +33,19 @@ return new class extends Migration
             $table->decimal('subtotal', 12, 2);
             $table->decimal('total_bayar', 12, 2);
             $table->text('bukti_tf')->nullable();
-            $table->enum('status_reservasi', ['Dipesan', 'Menunggu Konfirmasi', 'Ditolak', 'Selesai'])->default('Dipesan');
+            $table->enum('status_reservasi', ['Dipesan', 'Selesai', 'Dibatalkan'])->default('Dipesan');
             $table->timestamps();
             
             // Foreign key constraints
             $table->foreign('id_pelanggan')
                   ->references('id')
                   ->on('pelanggans')
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
+            
+            $table->foreign('id_user')
+                  ->references('id')
+                  ->on('users')
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
             
@@ -50,12 +60,12 @@ return new class extends Migration
                   ->on('diskons')
                   ->onUpdate('cascade')
                   ->onDelete('set null');
-        
+            
             $table->foreign('id_jenis_pembayaran')
                   ->references('id')
                   ->on('jenis_pembayarans')
                   ->onUpdate('cascade')
-                  ->onDelete('set null'); // Tambahkan onDelete jika perlu
+                  ->onDelete('set null');
         });
     }
 

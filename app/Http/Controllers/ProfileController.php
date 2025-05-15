@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Reservasi;
 
 class ProfileController extends Controller
 {
@@ -22,13 +23,19 @@ class ProfileController extends Controller
     }
 
     public function Profile(){
-        $user = Auth::user();
+        $userId = Auth::id();
 
-        $profilepel = User::with('pelanggan')->where('id', $user->id)->first();
+        $profilepel = User::with('pelanggan')->findOrFail($userId);
+        
+        $reservasis = Reservasi::with(['paketWisata', 'user'])
+            ->where('id_user', $userId)
+            ->orderBy('tgl_mulai_reservasi', 'desc')
+            ->get();
 
         return view('fe.profile', [
             'title' => 'Profil Pelanggan',
-            'profilepel' => $profilepel
+            'profilepel' => $profilepel,
+            'reservasis' => $reservasis
         ]);
     }
 

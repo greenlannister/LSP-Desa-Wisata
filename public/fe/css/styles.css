@@ -2547,3 +2547,19 @@ a:hover.back-to-top {
     gap: 10px; /* Jarak antar tombol */
     margin-top: 20px;
 }
+.invalid-feedback.d-block {
+    color: #dc3545;
+    font-size: 0.875em;
+    margin-top: 0.25rem;
+}
+
+.is-invalid {
+    border-color: #dc3545;
+}
+
+.alert-danger {
+    border-left: 4px solid #dc3545;
+    padding: 1rem;
+    background-color: #f8d7da;
+    color: #721c24;
+}

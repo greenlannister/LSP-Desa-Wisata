@@ -16,4 +16,8 @@ class Pelanggan extends Model
     {
         return $this->belongsTo(User::class, 'id_user');
     }
+    public function reservasis()
+    {
+        return $this->hasMany(Reservasi::class, 'id_pelanggan');
+    }
 }

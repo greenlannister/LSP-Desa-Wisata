@@ -7,6 +7,7 @@ use App\Http\Controllers\BendaharaController;
 use App\Http\Controllers\SiginController;
 use App\Http\Controllers\RegisController;
 use App\Http\Middleware\UserAkses;
+use App\Http\Controllers\ReservasiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,11 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/logout', [SiginController::class, 'logout'])->name('logout');
     Route::get('/profile-kar', [ProfileController::class, 'ProfileKar'])->name('profilekar');
     Route::get('/profile', [ProfileController::class, 'Profile'])->name('profile');
+    Route::get('/paket-wisata/{id}/reservasi', [ReservasiController::class, 'create'])->name('reservasi.create');
+    Route::post('/reservasi', [ReservasiController::class, 'store'])->name('reservasi.store');
+    
+    // Route untuk update status reservasi (bisa dijadikan scheduled task)
+    Route::post('/reservasi/update-status', [ReservasiController::class, 'updateStatus'])->name('reservasi.update-status');
 
 // Middleware karyawan
 

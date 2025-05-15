@@ -16,5 +16,9 @@ class Objek_Wisata extends Model
     {
         return $this->belongsTo(Kategori_Wisata::class, 'id_kategori_wisata');
     }
+    public function reservasi()
+    {
+        return $this->hasMany(User::class, 'id_objek_wisata');
+    }
 
 }

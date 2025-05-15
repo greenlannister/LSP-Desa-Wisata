@@ -11,9 +11,8 @@ class Diskon extends Model
     protected $fillable = ['nama_diskon', 'kode_diskon', 'persentase_diskon', 'foto', 'tanggal_mulai', 'tanggal_berakhir', 'deskripsi', 'aktif'];
 
     public function reservasis(){
-        return $this->hasMany(Diskon::class, 'diskon_id');
+        return $this->hasMany(Reservasi::class, 'id_diskon');
     }
-
     protected $casts = [
         'tanggal_mulai' => 'date',
         'tanggal_berakhir' => 'date',

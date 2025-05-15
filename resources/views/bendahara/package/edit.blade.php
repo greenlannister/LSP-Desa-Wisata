@@ -28,6 +28,10 @@
                             <textarea name="harga_per_pack" class="form-control input-soft" required>{{ $paket->harga_per_pack }}</textarea>
                         </div>
                         <div class="col-md-12 mb-3">
+                            <label>Maximum Kapasitas</label>
+                            <textarea name="max_kapasitas" class="form-control input-soft" required>{{ $paket->max_kapasitas }}</textarea>
+                        </div>
+                        <div class="col-md-12 mb-3">
                             <label>Foto 1</label>
                             <input type="file" name="foto1" class="form-control input-soft">
                             @if($paket->foto1)

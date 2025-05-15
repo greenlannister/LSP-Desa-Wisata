@@ -177,11 +177,12 @@ class BendaharaController extends Controller
     }
 
     function PaketWisata(Request $request){
-        $addpaket = $request->validate([
+        $validated = $request->validate([
             'nama_paket' => ['required', 'string', 'min:5'],
             'deskripsi' => ['required', 'string'],
             'fasilitas' => ['required', 'string'],
             'harga_per_pack' => ['required', 'integer', 'min:3'],
+            'max_kapasitas' => ['required', 'integer'], // Pastikan 2 'p'
             'foto1' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'foto2' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'foto3' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
@@ -190,7 +191,7 @@ class BendaharaController extends Controller
             'foto6' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'foto7' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
         ]);
-
+    
         DB::beginTransaction();
         try {
             $foto1 = $request->file('foto1')->store('paket_wisata', 'public');
@@ -200,12 +201,13 @@ class BendaharaController extends Controller
             $foto5 = $request->file('foto5') ? $request->file('foto5')->store('paket_wisata', 'public') : null;
             $foto6 = $request->file('foto6') ? $request->file('foto6')->store('paket_wisata', 'public') : null;
             $foto7 = $request->file('foto7') ? $request->file('foto7')->store('paket_wisata', 'public') : null;
-
+    
             Paket_Wisata::create([
-                'nama_paket' => $addpaket['nama_paket'],
-                'deskripsi' => $addpaket['deskripsi'],
-                'fasilitas' => $addpaket['fasilitas'],
-                'harga_per_pack' => $addpaket['harga_per_pack'],
+                'nama_paket' => $validated['nama_paket'],
+                'deskripsi' => $validated['deskripsi'],
+                'fasilitas' => $validated['fasilitas'],
+                'harga_per_pack' => $validated['harga_per_pack'],
+                'max_kapasitas' => $validated['max_kapasitas'], // Pastikan 2 'p'
                 'foto1' => $foto1,
                 'foto2' => $foto2,
                 'foto3' => $foto3,
@@ -214,7 +216,7 @@ class BendaharaController extends Controller
                 'foto6' => $foto6,
                 'foto7' => $foto7,
             ]);
-
+    
             DB::commit();
             return redirect()->route('paket')->with('swal', [
                 'title' => 'Berhasil!',
@@ -238,6 +240,7 @@ class BendaharaController extends Controller
             'deskripsi' => ['required', 'string'],
             'fasilitas' => ['required', 'string'],
             'harga_per_pack' => ['required', 'integer', 'min:3'],
+            'max_kapasitas' => ['required', 'integer'],
             'foto1' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'foto2' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'foto3' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
@@ -329,9 +332,11 @@ class BendaharaController extends Controller
 
             // Update data berita
             $paket->update([
-                'nama_paket' => $request->nama_paket,
+                    'nama_paket' => $request->nama_paket,
                     'deskripsi' => $request->deskripsi,
                     'fasilitas' => $request->fasilitas,
+                    'harga_per_pack' => $request->harga_per_pack,
+                    'max_kapasitas' => $request->max_kapasitas,
                     'foto1' => $paket->foto1,
                     'foto2' => $paket->foto2,
                     'foto3' => $paket->foto3,

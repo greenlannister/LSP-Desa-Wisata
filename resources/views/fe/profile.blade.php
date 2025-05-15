@@ -114,9 +114,85 @@
                         </div>
                     </div>
                 </div>
+                <button class="btn btn-sm btn-outline-primary mt-5" data-bs-toggle="modal" data-bs-target="#reservasiModal">
+                  Lihat Reservasi
+                </button>
             </div>
         </div>
     </div>
+
+ {{-- Modal Table reservasis --}}
+    <!-- Modal Reservasi -->
+    <div class="modal fade" id="reservasiModal" tabindex="-1" aria-labelledby="reservasiModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="reservasiModalLabel">Riwayat Reservasi Anda</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  @if($reservasis->isEmpty())
+                      <div class="alert alert-info">
+                          Anda belum memiliki riwayat reservasi.
+                      </div>
+                  @else
+                      <div class="table-responsive">
+                          <table class="table align-items-center mb-0">
+                              <thead>
+                                  <tr>
+                                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Paket Wisata</th>
+                                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Mulai</th>
+                                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Berakhir</th>
+                                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total Harga</th>
+                                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  @foreach($reservasis as $reservasi)
+                                  <tr>
+                                      <td>
+                                          <p class="text-xs font-weight-bold mb-0">
+                                              {{ $reservasi->paketWisata->nama_paket ?? '-' }}
+                                          </p>
+                                      </td>
+                                      <td>
+                                          <p class="text-xs font-weight-bold mb-0">
+                                              {{ $reservasi->tgl_mulai_reservasi->format('d M Y') }}
+                                          </p>
+                                      </td>
+                                      <td>
+                                          <p class="text-xs font-weight-bold mb-0">
+                                              {{ $reservasi->tgl_selesai_reservasi->format('d M Y') }}
+                                          </p>
+                                      </td>
+                                      <td>
+                                          <p class="text-xs font-weight-bold mb-0">
+                                              Rp {{ number_format($reservasi->total_bayar, 0, ',', '.') }}
+                                          </p>
+                                      </td>
+                                      <td>
+                                          <span class="badge badge-sm 
+                                              @if($reservasi->status_reservasi == 'Selesai') bg-gradient-success
+                                              @elseif($reservasi->status_reservasi == 'Dipesan') bg-gradient-primary
+                                              @elseif($reservasi->status_reservasi == 'Menunggu Konfirmasi') bg-gradient-warning
+                                              @else bg-gradient-danger @endif">
+                                              {{ $reservasi->status_reservasi }}
+                                          </span>
+                                      </td>
+                                  </tr>
+                                  @endforeach
+                              </tbody>
+                          </table>
+                      </div>
+                  @endif
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
   </div>
   <div class="fixed-plugin">
     <div class="card shadow-lg">
