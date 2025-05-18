@@ -5,7 +5,7 @@
                 
                 <!-- Tabs Links -->
                 <ul class="nav nav-tabs" id="ariaTabs" role="tablist">
-                    <li class="nav-item">
+                    <li class="nav-item first">
                         <a class="nav-link" id="nav-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false"><i class="fas fa-th"></i> Expertise</a>
                     </li>
                     <li class="nav-item">

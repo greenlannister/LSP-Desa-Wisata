@@ -1,5 +1,5 @@
 <div id="obta" class="filter">
-    <div class="container">
+    <div class="container center">
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title">ATTRACTIONS</div>
@@ -23,7 +23,7 @@
                 </div>
 
                 <!-- Grid Objek Wisata -->
-                <div class="grid">
+                <div class="grid center">
                     @isset($obtas)
                         @foreach($obtas as $objek)
                         <div class="element-item kategori-{{ $objek->kategori_wisata->id }}">
@@ -48,9 +48,9 @@
 @isset($obtas)
     @foreach($obtas as $objek)
     <div id="wisata-{{ $objek->id }}" class="lightbox-basic zoom-anim-dialog mfp-hide">
-        <div class="row">
+        <div class="row justify-content-center">
             <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
-            <div class="col-lg-8">
+            <div class="col-lg-8 tex">
                 <div id="carousel-{{ $objek->id }}" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         @for($i = 1; $i <= 7; $i++)
@@ -91,52 +91,69 @@
 
 {{-- Paket Wisata --}}
 
-   <!-- Services -->
-   <div id="services" class="cards-2">
+<!-- Services -->
+<div id="services" class="cards-2">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12 text-center">
                 <div class="section-title">SERVICES</div>
-                <h2>Choose The Service Package<br> That Suits Your Needs</h2>
-            </div> <!-- end of col -->
-        </div> <!-- end of row -->
-        <div class="row">
-            <div class="col-lg-12">
-                
-                <!-- Card -->
+                <h2>Choose The Service Package<br>That Suits Your Needs</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
             @isset($paket_wisatas)
-                @foreach($paket_wisatas as $paket)
-                <div class="card">
-                    <div class="card-image">
-                        @if($paket->foto1)
-                        <img src="{{ asset('storage/' . $paket->foto1) }}" alt="Foto Diskon" class="img-fluid">
-                        @else
-                        <img src="{{ asset('/assets/img/home-decor-1.jpg') }}" alt="Default Image" class="img-fluid">
-                        @endif
+                @php
+                    // Determine if we should show only 3 packages (for Home) or all (for Packages)
+                    $showLimited = request()->is('/') || request()->is('home'); // Adjust these routes as needed
+                    $packagesToShow = $showLimited ? array_slice($paket_wisatas->all(), 0, 3) : $paket_wisatas;
+                @endphp
+                
+                @foreach($packagesToShow as $paket)
+                <div class="col-lg-{{ $showLimited ? '4' : '3' }} col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-image" style="height: 200px; overflow: hidden;">
+                            @if($paket->foto1)
+                            <img src="{{ asset('storage/' . $paket->foto1) }}" alt="{{ $paket->nama_paket }}" class="img-fluid h-100 w-100 object-fit-cover">
+                            @else
+                            <img src="{{ asset('/assets/img/home-decor-1.jpg') }}" alt="Default Image" class="img-fluid h-100 w-100 object-fit-cover">
+                            @endif
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title text-center">{{ $paket->nama_paket }}</h3>
+                            <p class="text-start text-truncate-2" style="text-align: left !important;">{{ $paket->deskripsi }}</p>
+                            <ul class="list-unstyled li-space-lg text-start mb-3" style="max-height: 80px; overflow: hidden;">
+                                @php
+                                    $facilities = array_slice(explode("\n", $paket->fasilitas), 0, 2);
+                                @endphp
+                                @foreach($facilities as $fasilitas)
+                                    @if(trim($fasilitas))
+                                        <li class="media">
+                                            <i class="fas fa-square me-2"></i>
+                                            <div class="media-body">{{ $fasilitas }}</div>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                            <p class="price text-center mb-0">Starting at 
+                                <span>Rp {{ number_format($paket->harga_per_pack, 0, ',', '.') }}</span>
+                             </p>
+                        </div>
+                        <div class="button-container p-3 text-center">
+                            <a class="btn-solid-reg popup-with-move-anim" href="#paket-{{ $paket->id }}">DETAILS</a>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h3 class="card-title">{{ $paket->nama_paket }}</h3>
-                        <p>{{ $paket->deskripsi }}</p>
-                        <ul class="list-unstyled li-space-lg">
-                            <li class="media">
-                                <i class="fas fa-square"></i>
-                                <div class="media-body">{{ $paket->fasilitas }}</div>
-                            </li>
-                        </ul>
-                        <p class="price">Starting at <span>{{ $paket->harga_per_pack }}</span></p>
-                    </div>
-                    <div class="button-container">
-                        <a class="btn-solid-reg page-scroll popup-with-move-anim" href="#paket-{{ $paket->id }}">DETAILS</a>
-                    </div> <!-- end of button-container -->
                 </div>
-                <!-- end of card -->            
-            </div> <!-- end of col -->
-            @endforeach
-        @endisset
-        </div> <!-- end of row -->
-    </div> <!-- end of container -->
-</div> <!-- end of cards-2 -->
-<!-- end of services -->
+                @endforeach
+                
+                @if($showLimited && count($paket_wisatas) > 3)
+                <div class="col-12 text-center mt-4">
+                    <a href="/package-%-dwp" class="btn-solid-reg popup-with-move-anim">View All Packages</a>
+                </div>
+                @endif
+            @endisset
+        </div>
+    </div>
+</div>
 
 @isset($paket_wisatas)
     @foreach($paket_wisatas as $paket)
@@ -154,7 +171,7 @@
                             @endif
                         @endfor
                     </div>
-                    @if($paket->foto2) <!-- Hanya tampilkan kontrol jika ada lebih dari 1 foto -->
+                    @if($paket->foto2)
                     <button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ $paket->id }}" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
@@ -169,16 +186,79 @@
             <div class="col-lg-4">
                 <h3>{{ $paket->nama_paket }}</h3>
                 <hr class="line-heading">
-                <h6>{{ $paket->harga_per_pack }}</h6>
+                <h6>Rp {{ number_format($paket->harga_per_pack, 0, ',', '.') }}</h6>
                 <p>{{ $paket->deskripsi }}</p>
                 <div class="testimonial-container">
                     <p class="testimonial-text">{{ $paket->fasilitas }}</p>
                 </div>
                 <a class="btn-outline-reg mfp-close as-button" href="#services">BACK</a> 
                 <a class="btn-outline-reg mfp-close as-button" href="{{ route('reservasi.create', $paket->id) }}">BOOK NOW</a>
+                <br><br>
+                <a class="btn-outline-reg mfp-close as-button" href="/homestay-%-dwp">See All Homestay</a> 
             </div>
         </div>
     </div>
     @endforeach
 @endisset
+
+<style>
+    /* Custom styling for the packages */
+    .cards-2 {
+        padding: 60px 0;
+    }
+    
+    .card {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .card:hover {
+        transform: translateY(-10px);
+    }
+    
+    .card-image {
+        transition: transform 0.5s ease;
+    }
+    
+    .card:hover .card-image {
+        transform: scale(1.05);
+    }
+    
+    .price span {
+        font-weight: bold;
+        color: #2c3e50;
+        font-size: 1.2rem;
+    }
+    
+    .button-container {
+        margin-top: auto;
+        padding-bottom: 20px;
+    }
+    
+    .li-space-lg li {
+        margin-bottom: 10px;
+    }
+    
+    .fas.fa-square {
+        color: #2c3e50;
+        font-size: 0.5rem;
+        margin-top: 7px;
+    }
+    
+    /* Text truncation for 2 lines */
+    .text-truncate-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-height: 2.8em; /* Adjust based on your line-height */
+        line-height: 1.4em;
+    }
+</style>
 

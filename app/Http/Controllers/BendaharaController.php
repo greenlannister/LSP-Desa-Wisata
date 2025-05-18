@@ -44,11 +44,11 @@ class BendaharaController extends Controller
             'nama_penginapan' => ['required', 'string', 'min:5'],
             'deskripsi' => ['required', 'string'],
             'fasilitas' => ['required', 'string', 'min:5'],
-            'foto1' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto2' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto3' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto4' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto5' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048']
+            'foto1' => ['required', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto2' => ['required', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto3' => ['required', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto4' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto5' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif']
         ]);
 
         DB::beginTransaction();
@@ -92,11 +92,11 @@ class BendaharaController extends Controller
             'nama_penginapan' => ['required', 'string', 'min:5'],
             'deskripsi' => ['required', 'string'],
             'fasilitas' => ['required', 'string', 'min:5'],
-            'foto1' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto2' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto3' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto4' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto5' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048']
+            'foto1' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto2' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto3' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto4' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto5' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif']
         ]);
 
         DB::beginTransaction();
@@ -186,13 +186,13 @@ class BendaharaController extends Controller
             'fasilitas' => ['required', 'string'],
             'harga_per_pack' => ['required', 'integer', 'min:3'],
             'max_kapasitas' => ['required', 'integer'], // Pastikan 2 'p'
-            'foto1' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto2' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto3' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto4' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto5' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto6' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto7' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'foto1' => ['required', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto2' => ['required', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto3' => ['required', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto4' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto5' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto6' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto7' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
         ]);
     
         DB::beginTransaction();
@@ -244,13 +244,13 @@ class BendaharaController extends Controller
             'fasilitas' => ['required', 'string'],
             'harga_per_pack' => ['required', 'integer', 'min:3'],
             'max_kapasitas' => ['required', 'integer'],
-            'foto1' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto2' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto3' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto4' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto5' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto6' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto7' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'foto1' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto2' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto3' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto4' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto5' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto6' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto7' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
         ]);
 
         DB::beginTransaction();
@@ -436,13 +436,13 @@ class BendaharaController extends Controller
             'nama_wisata' => ['required', 'string', 'min:5'],
             'deskripsi' => ['required', 'string'],
             'fasilitas' => ['required', 'string'],
-            'foto1' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto2' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto3' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto4' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto5' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto6' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto7' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'foto1' => ['required', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto2' => ['required', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto3' => ['required', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto4' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto5' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto6' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto7' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
             'id_kategori_wisata' => ['required', 'exists:kategori_wisatas,id']
         ]);
     
@@ -492,13 +492,13 @@ class BendaharaController extends Controller
             'nama_wisata' => ['required', 'string', 'min:5'],
             'deskripsi' => ['required', 'string'],
             'fasilitas' => ['required', 'string'],
-            'foto1' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto2' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto3' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto4' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto5' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto6' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto7' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'foto1' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto2' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto3' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto4' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto5' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto6' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'foto7' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
             'id_kategori_wisata' => ['required', 'exists:kategori_wisatas,id']
         ]);
 
@@ -759,7 +759,7 @@ class BendaharaController extends Controller
         $addjen = $request->validate([
             'jenis_pembayaran' => ['required', 'string'],
             'nomor_tf' => ['required', 'string', 'min:0', 'max:30'],
-            'foto' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'foto' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
         ]);
 
         $addjen['jenis_pembayaran'] = strip_tags($addjen['jenis_pembayaran']);
@@ -786,7 +786,7 @@ class BendaharaController extends Controller
         $request->validate([
             'jenis_pembayaran' => ['required', 'string'],
             'nomor_tf' => ['required', 'string', 'min:0', 'max:30'],
-            'foto' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'foto' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
         ]);
     
         $jenpe = Jenis_Pembayaran::find($id);

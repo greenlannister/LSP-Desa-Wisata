@@ -134,7 +134,7 @@
                             </div>
                         </div>
                         
-                        <!-- Informasi Harga -->
+                        <!-- Di bagian rincian pembayaran -->
                         <div class="card mb-4 border-primary">
                             <div class="card-header bg-light">
                                 <h5 class="card-title mb-0 text-primary"><i class="fas fa-receipt me-2"></i>Rincian Pembayaran</h5>
@@ -143,12 +143,16 @@
                                 <table class="table mb-0">
                                     <tbody>
                                         <tr>
-                                            <td class="border-0">Harga per orang</td>
+                                            <td class="border-0">Harga per orang per hari</td>
                                             <td class="border-0 text-end">Rp <span id="harga-display">0</span></td>
                                         </tr>
                                         <tr>
                                             <td>Jumlah Peserta</td>
                                             <td class="text-end"><span id="jumlah-peserta-display">1</span> orang</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jumlah Hari</td>
+                                            <td class="text-end"><span id="jumlah-hari-display">1</span> hari</td>
                                         </tr>
                                         <tr>
                                             <td>Subtotal</td>
@@ -198,67 +202,69 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const paketHarga = {{ $paket_wisata->harga_per_pack }};
-    const diskonSelect = document.getElementById('id_diskon');
-    const jumlahPeserta = document.getElementById('jumlah_peserta');
-    const jenis_pembayaranSelect = document.getElementById('id_jenis_pembayaran');
-    const nomorRekeningInfo = document.getElementById('nomorRekeningInfo');
-    const nomorRekeningText = document.getElementById('nomorRekeningText');
+    // Pastikan variabel ini terdefinisi
+    const paketHarga = {{ $paket_wisata->harga_per_pack ?? 0 }};
     
-    // Fungsi untuk menghitung harga
+    // Elemen yang diperlukan
+    const jumlahPeserta = document.getElementById('jumlah_peserta');
+    const diskonSelect = document.getElementById('id_diskon');
+    const tglMulaiInput = document.getElementById('tgl_mulai_reservasi');
+    const tglSelesaiInput = document.getElementById('tgl_selesai_reservasi');
+    
+    // Fungsi format rupiah
+    function formatRupiah(angka) {
+        return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+    
+    // Fungsi hitung jumlah hari
+    function hitungJumlahHari() {
+        if (tglMulaiInput.value && tglSelesaiInput.value) {
+            const tglMulai = new Date(tglMulaiInput.value);
+            const tglSelesai = new Date(tglSelesaiInput.value);
+            const diffTime = Math.abs(tglSelesai - tglMulai);
+            return Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+        }
+        return 1;
+    }
+    
+    // Fungsi utama hitung harga
     function hitungHarga() {
         const peserta = parseInt(jumlahPeserta.value) || 1;
+        const hari = hitungJumlahHari();
         const persentaseDiskon = diskonSelect.selectedOptions[0]?.dataset.persentase || 0;
         
-        const subtotal = paketHarga * peserta;
+        const subtotal = paketHarga * peserta * hari;
         const diskon = subtotal * (persentaseDiskon / 100);
         const totalBayar = subtotal - diskon;
         
         // Update tampilan
         document.getElementById('harga-display').textContent = formatRupiah(paketHarga);
         document.getElementById('jumlah-peserta-display').textContent = peserta;
+        document.getElementById('jumlah-hari-display').textContent = hari;
         document.getElementById('subtotal-display').textContent = formatRupiah(subtotal);
         document.getElementById('persentase-diskon-display').textContent = persentaseDiskon;
         document.getElementById('diskon-display').textContent = formatRupiah(diskon);
         document.getElementById('total-bayar-display').textContent = formatRupiah(totalBayar);
     }
     
-    // Format angka ke Rupiah
-    function formatRupiah(angka) {
-        return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    }
-    
-    // Tampilkan nomor rekening saat jenis pembayaran dipilih
-    jenis_pembayaranSelect.addEventListener('change', function() {
-        const selectedOption = this.selectedOptions[0];
-        if (selectedOption && selectedOption.dataset.nomor) {
-            nomorRekeningText.textContent = selectedOption.dataset.nomor;
-            nomorRekeningInfo.classList.remove('d-none');
-        } else {
-            nomorRekeningInfo.classList.add('d-none');
-        }
-    });
-    
-    // Event listeners
-    diskonSelect.addEventListener('change', hitungHarga);
+    // Pasang event listeners
     jumlahPeserta.addEventListener('input', hitungHarga);
+    diskonSelect.addEventListener('change', hitungHarga);
+    tglMulaiInput.addEventListener('change', function() {
+        if (this.value) {
+            const minDate = new Date(this.value);
+            minDate.setDate(minDate.getDate() + 1);
+            tglSelesaiInput.min = this.value;
+            
+            if (!tglSelesaiInput.value || new Date(tglSelesaiInput.value) < minDate) {
+                tglSelesaiInput.value = minDate.toISOString().slice(0, 16);
+            }
+        }
+        hitungHarga();
+    });
+    tglSelesaiInput.addEventListener('change', hitungHarga);
     
     // Hitung harga awal
     hitungHarga();
-    
-    // Validasi tanggal selesai harus setelah tanggal mulai
-    document.getElementById('tgl_mulai_reservasi').addEventListener('change', function() {
-        const tglMulai = new Date(this.value);
-        const tglSelesaiInput = document.getElementById('tgl_selesai_reservasi');
-        
-        if (this.value) {
-            tglSelesaiInput.min = this.value;
-            const tglSelesai = new Date(tglSelesaiInput.value);
-            
-            if (tglSelesai <= tglMulai) {
-                tglSelesaiInput.value = '';
-            }
-        }
-    });
 });
 </script>

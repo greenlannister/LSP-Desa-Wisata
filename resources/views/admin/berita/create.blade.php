@@ -50,13 +50,13 @@
                           </div>
                       </div>
                       <div class="mb-3 row">
-                        <label for="foto" class="col-sm-2 col-form-label">Foto 1</label>
+                        <label for="foto" class="col-sm-2 col-form-label">Foto 2</label>
                         <div class="col-sm-10  input-soft">
                             <input type="file" class="form-control" name="foto2" id="foto2">
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="foto" class="col-sm-2 col-form-label">Foto 1</label>
+                        <label for="foto" class="col-sm-2 col-form-label">Foto 3</label>
                         <div class="col-sm-10  input-soft">
                             <input type="file" class="form-control" name="foto3" id="foto3">
                         </div>

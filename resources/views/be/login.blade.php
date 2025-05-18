@@ -33,7 +33,7 @@
   <!-- CSS Files -->
   <link id="pagestyle" href="sig/css/material-dashboard.css?v=3.2.0" rel="stylesheet" />
 </head>
-<link rel="icon" href="{{ asset('image/logo.svg') }}">
+<link rel="icon" href="{{ asset('image/logo.png') }}">
 <body class="bg-gray-200">
   <div class="container position-sticky z-index-sticky top-0">
     <div class="row">

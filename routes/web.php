@@ -51,6 +51,7 @@ Route::middleware(['auth'])->group(function(){
     // Middleware Owner
     Route::middleware(['userAkses:pemilik'])->group(function(){
         Route::resource('/owner-%-dwp', OwnerController::class);
+        Route::get('/laporan-pdf', [OwnerController::class, 'laporanBulanan'])->name('owner.laporan.pdf');
     });
 
     // Middleware Admin

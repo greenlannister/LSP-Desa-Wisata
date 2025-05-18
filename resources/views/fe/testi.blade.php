@@ -18,7 +18,7 @@
                             <!-- Slide -->
                             <div class="swiper-slide">
                                 <div class="card">
-                                    <img class="card-image" src="{{ asset('image/caca.jpg') }}" alt="alternative">
+                                        <img class="card-image" src="{{ asset('image/caca.jpg') }}" alt="Riyadatunnisa">
                                     <div class="card-body">
                                         <div class="testimonial-text">Danau Toba Tourism Village exceeded my expectations! The breathtaking landscapes, the warm hospitality, and the rich Batak culture made this trip unforgettable. A must-visit for every traveler!</div>
                                         <div class="testimonial-author">Riyadatunnisa – Travel Blogger</div>
@@ -30,7 +30,7 @@
                             <!-- Slide -->
                             <div class="swiper-slide">
                                 <div class="card">
-                                    <img class="card-image" src="{{ asset('image/olip.jpg') }}" alt="alternative">
+                                        <img class="card-image" src="{{ asset('image/olip.jpg') }}" alt="Riyadatunnisa">
                                     <div class="card-body">
                                         <div class="testimonial-text">Exploring Samosir Island and the surrounding attractions was a thrilling experience! The guided tours were insightful, and the natural beauty left me speechless. Highly recommended!</div>
                                         <div class="testimonial-author">Nova Olivia – Adventure Seeker</div>
@@ -42,7 +42,7 @@
                             <!-- Slide -->
                             <div class="swiper-slide">
                                 <div class="card">
-                                    <img class="card-image" src="{{ asset('image/ncit.jpg') }}" alt="alternative">
+                                        <img class="card-image" src="{{ asset('image/ncit.jpg') }}" alt="Riyadatunnisa">
                                     <div class="card-body">
                                         <div class="testimonial-text">Perfect for a family getaway! The serene lake, friendly locals, and cultural performances made our vacation special. My kids loved the traditional Batak dances!</div>
                                         <div class="testimonial-author">Citra Halizah – Family Traveler</div>
@@ -54,7 +54,7 @@
                             <!-- Slide -->
                             <div class="swiper-slide">
                                 <div class="card">
-                                    <img class="card-image" src="{{ asset('image/asha.jpg') }}" alt="alternative">
+                                    <img class="card-image" src="{{ asset('image/asha.jpg') }}" alt="Riyadatunnisa">
                                     <div class="card-body">
                                         <div class="testimonial-text">A paradise for photographers! Every corner of Danau Toba offers a stunning view—whether it's sunrise over the lake or the charming villages nearby. Can't wait to visit again!</div>
                                         <div class="testimonial-author">Ashalia Azhari - Photographer</div>
@@ -79,3 +79,13 @@
     </div> <!-- end of container -->
 </div> <!-- end of slider -->
 <!-- end of testimonials -->
+
+<style>
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image covers the container without distortion */
+    transition: transform 0.3s ease;
+}
+
+</style>

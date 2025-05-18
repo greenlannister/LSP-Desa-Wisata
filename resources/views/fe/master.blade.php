@@ -30,7 +30,7 @@
 	<link href="{{ asset('fe/css/styles.css') }}" rel="stylesheet">
 	
 	<!-- Favicon  -->
-    <link rel="icon" href="{{ asset('image/logo.svg') }}">
+    <link rel="icon" href="{{ asset('image/logo.png') }}">
 
     {{-- // Dari be --}}
       <!--     Fonts and icons     -->
@@ -101,7 +101,9 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
         <!-- Logo -->
-        <a class="navbar-brand logo-image" href="/"><img src="{{ asset('image/logo.svg') }}" alt="alternative"></a>
+        <a class="navbar-brand logo-image" href="/">
+            <img src="{{ asset('image/logo.png') }}" alt="Logo" style="height: 50px; width: auto;">
+        </a>        
         <h2 class="text-logo">Desa Danau Toba</h2>
         
         <!-- Mobile Toggle Button -->
