@@ -4,11 +4,13 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\BendaharaController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SiginController;
 use App\Http\Controllers\RegisController;
 use App\Http\Middleware\UserAkses;
 use App\Http\Controllers\ReservasiController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,8 +39,11 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/logout', [SiginController::class, 'logout'])->name('logout');
     Route::get('/profile-kar', [ProfileController::class, 'ProfileKar'])->name('profilekar');
     Route::get('/profile', [ProfileController::class, 'Profile'])->name('profile');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/paket-wisata/{id}/reservasi', [ReservasiController::class, 'create'])->name('reservasi.create');
     Route::post('/reservasi', [ReservasiController::class, 'store'])->name('reservasi.store');
+    Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.submit');
     
     // Route untuk update status reservasi (bisa dijadikan scheduled task)
     Route::post('/reservasi/update-status', [ReservasiController::class, 'updateStatus'])->name('reservasi.update-status');

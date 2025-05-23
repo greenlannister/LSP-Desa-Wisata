@@ -119,13 +119,104 @@
                                     </li>
                                 @endforeach
                             </ul>
+                          </div>
+                      </div>
+                    </div>
+                  <button class="btn btn-sm btn-outline-primary mt-3" data-bs-toggle="modal" data-bs-target="#reservasiModal">
+                    Lihat Reservasi
+                  </button>
+                </div>
+                <div>
+                  <div class="card-header px-2">
+                      <div class="d-flex justify-content-between">
+                        <div class="dropdown">
+                          <button class="btn btn-primary" type="button" id="dropdownNota" data-bs-toggle="modal" data-bs-target="#buatReviewModal" aria-expanded="false">
+                            <i class="fas fa-file-pdf me-1"></i>Buat Review
+                          </button>
+                          <button class="btn btn-primary" type="button" id="dropdownNota" data-bs-toggle="modal" data-bs-target="#editProfileModal" aria-expanded="false">
+                            <i class="fas fa-file-pdf me-1"></i>Edit Profile
+                          </button>
                         </div>
                     </div>
-                </div>
-                <button class="btn btn-sm btn-outline-primary mt-3" data-bs-toggle="modal" data-bs-target="#reservasiModal">
-                  Lihat Reservasi
-                </button>
+                  </div>
+              </div>
             </div>
+
+            <!-- Modal untuk Buat Review -->
+            <div class="modal fade" id="buatReviewModal" tabindex="-1" aria-labelledby="buatReviewModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="buatReviewModalLabel">Buat Review Baru</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <form id="reviewForm" action="{{ route('reviews.store') }}" method="POST">
+                          @csrf
+                          <div class="modal-body">
+                              <div class="mb-3">
+                                  <label for="ulasan" class="form-label">Isi Review</label>
+                                  <textarea class="form-control" id="ulasan" name="ulasan" rows="5" 
+                                            placeholder="Tulis review Anda di sini" required></textarea>
+                              </div>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                              <button type="submit" class="btn btn-primary">Simpan Review</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+            </div>
+
+            <!-- Modal untuk Edit Profile -->
+            <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="editProfileModalLabel">Edit Profil Anda</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <form id="editProfileForm" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                          @csrf
+                          @method('PUT')
+                          <div class="modal-body">
+                              <div class="mb-3">
+                                  <label for="nama_pelanggan" class="form-label">Nama Lengkap</label>
+                                  <input type="text" class="form-control" id="nama_pelanggan" name="nama_pelanggan" 
+                                         value="{{ $profilepel->pelanggan->nama_pelanggan ?? '' }}" placeholder="Masukkan nama lengkap">
+                              </div>
+                              <div class="mb-3">
+                                  <label for="email" class="form-label">Email</label>
+                                  <input type="email" class="form-control" id="email" name="email" 
+                                         value="{{ $profilepel->email ?? '' }}" placeholder="Masukkan alamat email">
+                              </div>
+                              <div class="mb-3">
+                                  <label for="nomor_HP" class="form-label">No Handphone</label>
+                                  <input type="text" class="form-control" id="nomor_HP" name="nomor_HP" 
+                                         value="{{ $profilepel->pelanggan->nomor_HP ?? '' }}" placeholder="Masukkan nomor handphone anda">
+                              </div>
+                              <div class="mb-3">
+                                  <label for="alamat" class="form-label">Alamat</label>
+                                  <textarea class="form-control" id="alamat" name="alamat" rows="3" 
+                                            placeholder="Tulis alamat anda">{{ $profilepel->pelanggan->alamat ?? '' }}</textarea>
+                              </div>
+                              <div class="mb-3">
+                                <label>Foto</label>
+                                <input type="file" name="foto" class="form-control input-soft">
+                                @if($profilepel->pelanggan->foto)
+                                    <img src="{{ asset('storage/' . $profilepel->pelanggan->foto) }}" class="img-thumbnail mt-2" width="70">
+                                    <input type="hidden" name="foto_lama" value="{{ $profilepel->pelanggan->foto }}">
+                                @endif
+                              </div>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                              <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
         </div>
     </div>
 

@@ -321,7 +321,7 @@
     
     	
     <!-- Scripts -->
-    <script src="{{ asset('fe/js/jquery.min.j') }}s"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="{{ asset('fe/js/jquery.min.js') }}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
     <script src="{{asset ('fe/js/popper.min.js') }}"></script> <!-- Popper tooltip library for Bootstrap -->
     <script src="{{ asset('fe/js/bootstrap.min.js') }}"></script> <!-- Bootstrap framework -->
     <script src="{{ asset('fe/js/jquery.easing.min.js') }}"></script> <!-- jQuery Easing for smooth scrolling between anchors -->

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Models\Objek_Wisata;
 use App\Models\Kategori_Wisata;
@@ -18,6 +19,7 @@ class HomeController extends Controller
     public function index()
     {
         $obtas = Objek_Wisata::with('kategori_wisata')->get();
+        $reviews = Review::with('pelanggan')->latest()->get();
         $kategori_wisatas = Kategori_Wisata::all();
         $paket_wisatas = Paket_Wisata::all(); // ambil data dari tabel ketiga
         $diskons = Diskon::all();
@@ -25,6 +27,7 @@ class HomeController extends Controller
 
         return view('home.index', [
             'obtas' => $obtas,
+            'reviews' => $reviews,
             'kategori_wisatas' => $kategori_wisatas,
             'paket_wisatas' => $paket_wisatas, // kirim ke view
             'diskons' => $diskons,

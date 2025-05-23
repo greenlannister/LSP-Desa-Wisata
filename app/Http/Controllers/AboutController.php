@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Karyawan;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -14,9 +15,11 @@ class AboutController extends Controller
     {
         
         $karyawans = Karyawan::all();
+        $reviews = Review::with('pelanggan')->latest()->get();
 
         return view('about.index', [
             'karyawans' => $karyawans,
+            'reviews' => $reviews,
             'title' => 'About'
         ]);
     }

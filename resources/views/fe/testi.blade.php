@@ -16,51 +16,21 @@
                         <div class="swiper-wrapper">
                             
                             <!-- Slide -->
+                            @foreach($reviews as $review)
                             <div class="swiper-slide">
                                 <div class="card">
-                                        <img class="card-image" src="{{ asset('image/caca.jpg') }}" alt="Riyadatunnisa">
+                                    @if($review->pelanggan->foto)
+                                        <img class="card-image" src="{{ asset('storage/' . $review->pelanggan->foto) }}" alt="{{ $review->pelanggan->nama_pelanggan }}">
+                                    @else
+                                        <img class="card-image" src="{{ asset('image/default-profile.jpg') }}" alt="Default Profile">
+                                    @endif
                                     <div class="card-body">
-                                        <div class="testimonial-text">Danau Toba Tourism Village exceeded my expectations! The breathtaking landscapes, the warm hospitality, and the rich Batak culture made this trip unforgettable. A must-visit for every traveler!</div>
-                                        <div class="testimonial-author">Riyadatunnisa – Travel Blogger</div>
+                                        <div class="testimonial-text">{{ $review->ulasan }}</div>
+                                        <div class="testimonial-author">{{ $review->pelanggan->nama_pelanggan }}</div>
                                     </div>
                                 </div>
                             </div> <!-- end of swiper-slide -->
-                            <!-- end of slide -->
-    
-                            <!-- Slide -->
-                            <div class="swiper-slide">
-                                <div class="card">
-                                        <img class="card-image" src="{{ asset('image/olip.jpg') }}" alt="Riyadatunnisa">
-                                    <div class="card-body">
-                                        <div class="testimonial-text">Exploring Samosir Island and the surrounding attractions was a thrilling experience! The guided tours were insightful, and the natural beauty left me speechless. Highly recommended!</div>
-                                        <div class="testimonial-author">Nova Olivia – Adventure Seeker</div>
-                                    </div>
-                                </div>        
-                            </div> <!-- end of swiper-slide -->
-                            <!-- end of slide -->
-    
-                            <!-- Slide -->
-                            <div class="swiper-slide">
-                                <div class="card">
-                                        <img class="card-image" src="{{ asset('image/ncit.jpg') }}" alt="Riyadatunnisa">
-                                    <div class="card-body">
-                                        <div class="testimonial-text">Perfect for a family getaway! The serene lake, friendly locals, and cultural performances made our vacation special. My kids loved the traditional Batak dances!</div>
-                                        <div class="testimonial-author">Citra Halizah – Family Traveler</div>
-                                    </div>
-                                </div>        
-                            </div> <!-- end of swiper-slide -->
-                            <!-- end of slide -->
-    
-                            <!-- Slide -->
-                            <div class="swiper-slide">
-                                <div class="card">
-                                    <img class="card-image" src="{{ asset('image/asha.jpg') }}" alt="Riyadatunnisa">
-                                    <div class="card-body">
-                                        <div class="testimonial-text">A paradise for photographers! Every corner of Danau Toba offers a stunning view—whether it's sunrise over the lake or the charming villages nearby. Can't wait to visit again!</div>
-                                        <div class="testimonial-author">Ashalia Azhari - Photographer</div>
-                                    </div>
-                                </div>
-                            </div> <!-- end of swiper-slide -->
+                            @endforeach
                             <!-- end of slide -->
                         
                         </div> <!-- end of swiper-wrapper -->

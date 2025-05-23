@@ -711,6 +711,17 @@ input[type='checkbox'] {
 	animation: fadeDropdown 0.2s; /* required for the fade animation */
 }
 
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+}
+
 @keyframes fadeDropdown {
     0% {
         opacity: 0;
@@ -724,6 +735,52 @@ input[type='checkbox'] {
 .navbar-custom .dropdown-toggle:focus { /* removes dropdown outline on focus  */
 	outline: 0;
 }
+
+    /* Custom Dropdown Styles */
+    .navbar .nav-item.dropdown .dropdown-toggle::after {
+        display: inline-block;
+        margin-left: 0.255em;
+        vertical-align: 0.255em;
+        content: "";
+        border-top: 0.3em solid;
+        border-right: 0.3em solid transparent;
+        border-bottom: 0;
+        border-left: 0.3em solid transparent;
+        color: rgba(255, 255, 255, 0.8);
+        transition: all 0.2s ease;
+    }
+
+    .navbar .nav-item.dropdown.show .dropdown-toggle::after {
+        transform: rotate(-180deg);
+    }
+
+    .navbar .dropdown-menu {
+        background-color: #343a40;
+        border: none;
+        border-radius: 0;
+        margin-top: 0;
+    }
+
+    .navbar .dropdown-item {
+        color: rgba(255, 255, 255, 0.8);
+        padding: 0.5rem 1.5rem;
+    }
+
+    .navbar .dropdown-item:hover,
+    .navbar .dropdown-item:focus {
+        color: #fff;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .navbar .dropdown-divider {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 0.25rem 0;
+    }
+
+    /* Untuk memastikan dropdown terlihat di atas elemen lain */
+    .navbar .dropdown-menu {
+        z-index: 1020;
+    }
 
 .navbar-custom .dropdown-menu {
 	margin-top: 0;

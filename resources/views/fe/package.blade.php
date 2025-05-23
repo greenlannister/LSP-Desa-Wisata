@@ -23,7 +23,7 @@
                 </div>
 
                 <!-- Grid Objek Wisata -->
-                <div class="grid center">
+                <div class="wisata-grid-container">
                     @isset($obtas)
                         @foreach($obtas as $objek)
                         <div class="element-item kategori-{{ $objek->kategori_wisata->id }}">
@@ -32,9 +32,9 @@
                                     <span>{{ $objek->nama_wisata }}</span>
                                 </div>
                                 @if($objek->foto1)
-                                    <img src="{{ asset('storage/' . $objek->foto1) }}" class="img-fluid w-100 h-100 object-fit-cover" alt="{{ $objek->nama_wisata }}" style="min-height: 250px;">
+                                    <img src="{{ asset('storage/' . $objek->foto1) }}" alt="{{ $objek->nama_wisata }}">
                                 @else
-                                    <img src="{{ asset('assets/img/default-image.jpg') }}" class="img-fluid w-100 h-100 object-fit-cover" alt="Default Image" style="min-height: 250px;">
+                                    <img src="{{ asset('assets/img/default-image.jpg') }}" alt="Default Image">
                                 @endif
                             </a>
                         </div>
@@ -202,6 +202,58 @@
 @endisset
 
 <style>
+
+.wisata-grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 10px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+
+    .element-item {
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        transition: transform 0.3s ease;
+    }
+
+    .element-item:hover {
+        transform: translateY(-4px);
+    }
+
+    .element-item-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
+        color: white;
+        padding: 20px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .element-item a {
+        display: block;
+        position: relative;
+        height: 100%;
+    }
+
+    .element-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        min-height: 250px;
+    }    
+
     /* Custom styling for the packages */
     .cards-2 {
         padding: 60px 0;

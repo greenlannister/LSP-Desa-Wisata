@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Reservasi;
+use App\Models\Pelanggan;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -37,6 +39,50 @@ class ProfileController extends Controller
             'profilepel' => $profilepel,
             'reservasis' => $reservasis
         ]);
+    }
+
+    public function update(Request $request)
+    {
+        $userId = Auth::id();
+        
+        // Validasi input
+        $request->validate([
+            'nama_pelanggan' => ['required', 'string', 'max:255'],
+            'email' => 'required|email|unique:users,email,' . $userId,
+            'alamat' => ['required', 'string'],
+            'nomor_HP' => ['required', 'string', 'max:15'],
+            'foto' => ['nullable', 'image', 'max:2048'],
+        ]);
+    
+        try {
+            // Update data di tabel users
+            $user = User::findOrFail($userId);
+            $user->email = $request->email;
+            $user->save();
+    
+            // Update data di tabel pelanggans
+            $pelanggan = Pelanggan::where('id_user', $userId)->firstOrFail();
+            $pelanggan->nama_pelanggan = $request->nama_pelanggan;
+            $pelanggan->nomor_HP = $request->nomor_HP;
+            $pelanggan->alamat = $request->alamat;
+    
+            // Handle upload foto jika ada
+            if ($request->hasFile('foto')) {
+                // Hapus foto lama jika ada
+                if ($pelanggan->foto) {
+                    Storage::disk('public')->delete($pelanggan->foto);
+                }
+                
+                // Simpan foto baru
+                $pelanggan->foto = $request->file('foto')->store('pelanggan', 'public');
+            }
+    
+            $pelanggan->save();
+    
+            return redirect()->back()->with('success', 'Profil berhasil diperbarui!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal memperbarui profil: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -79,13 +125,6 @@ class ProfileController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

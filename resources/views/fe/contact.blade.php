@@ -50,24 +50,25 @@
             <div class="col-lg-6">
                 
                 <!-- Contact Form -->
-                <form id="contactForm" data-toggle="validator" data-focus="false">
+                <form id="contactForm" action="{{ route('contact.submit') }}" method="POST" data-toggle="validator" data-focus="false">
+                    @csrf
                     <div class="form-group">
-                        <input type="text" class="form-control-input" id="cname" required>
+                        <input type="text" class="form-control-input" id="cname" name="cname" required>
                         <label class="label-control" for="cname">Name</label>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control-input" id="cemail" required>
+                        <input type="email" class="form-control-input" id="cemail" name="cemail" required>
                         <label class="label-control" for="cemail">Email</label>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control-textarea" id="cmessage" required></textarea>
+                        <textarea class="form-control-textarea" id="cmessage" name="cmessage" required></textarea>
                         <label class="label-control" for="cmessage">Your message</label>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group checkbox">
-                        <input type="checkbox" id="cterms" value="Agreed-to-Terms" required>I agree with Danau Toba Tourism's <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-conditions.html">Terms Conditions</a> 
+                        <input type="checkbox" id="cterms" name="cterms" value="1" required>I agree with Danau Toba Tourism's <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-conditions.html">Terms Conditions</a> 
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
@@ -84,3 +85,45 @@
     </div> <!-- end of container -->
 </div> <!-- end of form-2 -->
 <!-- end of contact -->
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const form = e.target;
+        const formData = new FormData(form);
+        const submitButton = form.querySelector('button[type="submit"]');
+        const messageDiv = document.getElementById('cmsgSubmit');
+        
+        submitButton.disabled = true;
+        submitButton.textContent = 'MENGIRIM...';
+        
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                form.reset();
+                messageDiv.textContent = data.message;
+                messageDiv.classList.remove('hidden');
+                messageDiv.style.color = 'green';
+            } else {
+                throw new Error(data.message || 'Terjadi kesalahan');
+            }
+        })
+        .catch(error => {
+            messageDiv.textContent = error.message;
+            messageDiv.classList.remove('hidden');
+            messageDiv.style.color = 'red';
+        })
+        .finally(() => {
+            submitButton.disabled = false;
+            submitButton.textContent = 'SUBMIT MESSAGE';
+        });
+    });
+</script>
