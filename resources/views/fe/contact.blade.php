@@ -63,12 +63,8 @@
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control-textarea" id="cmessage" name="cmessage" required></textarea>
-                        <label class="label-control" for="cmessage">Your message</label>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group checkbox">
-                        <input type="checkbox" id="cterms" name="cterms" value="1" required>I agree with Danau Toba Tourism's <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-conditions.html">Terms Conditions</a> 
+                        <textarea class="form-control-textarea" id="cumessage" name="cumessage" required></textarea>
+                        <label class="label-control" for="cumessage">Your message</label>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
@@ -79,7 +75,6 @@
                     </div>
                 </form>
                 <!-- end of contact form -->
-
             </div> <!-- end of col -->
         </div> <!-- end of row -->
     </div> <!-- end of container -->
@@ -92,7 +87,7 @@
         const form = e.target;
         const formData = new FormData(form);
         const submitButton = form.querySelector('button[type="submit"]');
-        const messageDiv = document.getElementById('cmsgSubmit');
+        const userMessageDiv = document.getElementById('cmsgSubmit');
         
         submitButton.disabled = true;
         submitButton.textContent = 'MENGIRIM...';
@@ -109,17 +104,17 @@
         .then(data => {
             if (data.success) {
                 form.reset();
-                messageDiv.textContent = data.message;
-                messageDiv.classList.remove('hidden');
-                messageDiv.style.color = 'green';
+                userMessageDiv.textContent = data.message;
+                userMessageDiv.classList.remove('hidden');
+                userMessageDiv.style.color = 'green';
             } else {
                 throw new Error(data.message || 'Terjadi kesalahan');
             }
         })
         .catch(error => {
-            messageDiv.textContent = error.message;
-            messageDiv.classList.remove('hidden');
-            messageDiv.style.color = 'red';
+            userMessageDiv.textContent = error.message || 'Terjadi kesalahan saat mengirim.';
+            userMessageDiv.classList.remove('hidden');
+            userMessageDiv.style.color = 'red';
         })
         .finally(() => {
             submitButton.disabled = false;

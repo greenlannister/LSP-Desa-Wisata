@@ -25,6 +25,7 @@ Route::resource('/contact-%-dwp', App\Http\Controllers\ContactController::class)
 Route::resource('/regis-%-dwp', App\Http\Controllers\RegisController::class);
 Route::post('/regis-%-dwp', [RegisController::class, 'store'])->name('register-pelanggan');
 Route::resource('/discount-%-dwp', App\Http\Controllers\DiscountController::class);
+Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.submit');
      
 
 // Middleware guest (hanya untuk yang belum login)
@@ -43,7 +44,6 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/paket-wisata/{id}/reservasi', [ReservasiController::class, 'create'])->name('reservasi.create');
     Route::post('/reservasi', [ReservasiController::class, 'store'])->name('reservasi.store');
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
-    Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.submit');
     
     // Route untuk update status reservasi (bisa dijadikan scheduled task)
     Route::post('/reservasi/update-status', [ReservasiController::class, 'updateStatus'])->name('reservasi.update-status');

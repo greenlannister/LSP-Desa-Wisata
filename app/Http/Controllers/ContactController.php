@@ -21,7 +21,7 @@ class ContactController extends Controller
     public function sendEmail(Request $request)
     {
         // Tambahkan ini untuk debugging
-        $viewPath = resource_path('views\fe\emails\contact-form.blade.php');
+        $viewPath = resource_path('views/emails/contact-form.blade.php');
         if (!file_exists($viewPath)) {
             return response()->json([
                 'success' => false,
@@ -33,16 +33,15 @@ class ContactController extends Controller
         $request->validate([
             'cname' => 'required|string|max:255',
             'cemail' => 'required|email',
-            'cmessage' => 'required|string',
-            'cterms' => 'required|accepted'
+            'cumessage' => 'required|string',
         ]);
 
         // Kirim email
-        Mail::to('putriauliarahma129l@gmail.com')
+        Mail::to('putriauliarahma129@gmail.com')
             ->send(new ContactFormMail(
                 $request->input('cname'),
                 $request->input('cemail'),
-                $request->input('cmessage')
+                $request->input('cumessage')
             ));
 
         return response()->json([

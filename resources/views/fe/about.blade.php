@@ -26,15 +26,29 @@
                         <!-- Counter -->
                         <div id="counter">
                             <div class="cell">
-                                <div class="counter-value number-count" data-count="231">1</div>
+                                <?php
+                                // Hitung jumlah Happy Users (jumlah reservasi unik berdasarkan id_pelanggan)
+                                $happyUsers = DB::table('reservasis')
+                                              ->distinct('id_pelanggan')
+                                              ->count('id_pelanggan');
+                                ?>
+                                <div class="counter-value number-count" data-count="<?php echo $happyUsers; ?>">1</div>
                                 <div class="counter-info">Happy<br>Users</div>
                             </div>
                             <div class="cell">
-                                <div class="counter-value number-count" data-count="121">1</div>
-                                <div class="counter-info">Issues<br>Solved</div>
+                                <?php
+                                // Hitung jumlah Packages (jumlah paket wisata)
+                                $packages = DB::table('paket_wisatas')->count();
+                                ?>
+                                <div class="counter-value number-count" data-count="<?php echo $packages; ?>">1</div>
+                                <div class="counter-info">Packages</div>
                             </div>
                             <div class="cell">
-                                <div class="counter-value number-count" data-count="159">1</div>
+                                <?php
+                                // Hitung jumlah Good Reviews (jumlah review)
+                                $goodReviews = DB::table('review')->count();
+                                ?>
+                                <div class="counter-value number-count" data-count="<?php echo $goodReviews; ?>">1</div>
                                 <div class="counter-info">Good<br>Reviews</div>
                             </div>
                         </div>
