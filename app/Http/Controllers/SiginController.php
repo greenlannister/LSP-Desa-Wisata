@@ -37,7 +37,7 @@ class SiginController extends Controller
                 case 'pelanggan':
                     return redirect('/');
                 case 'bendahara':
-                    return redirect('/bendahara-dwp');
+                    return redirect('/bendahara');
                 case 'admin':
                     return redirect('/admin-dwp');
                 case 'pemilik':
