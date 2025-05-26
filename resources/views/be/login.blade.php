@@ -95,7 +95,7 @@
                   </div>
                   <p class="mt-4 text-sm text-center">
                     Don't have an account?
-                    <a href="/regis-%-dwp" class="text-primary text-gradient font-weight-bold">Register</a>
+                    <a href="/regis-dwp" class="text-primary text-gradient font-weight-bold">Register</a>
                   </p>
                 </form>
               </div>

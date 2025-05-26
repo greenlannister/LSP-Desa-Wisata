@@ -147,7 +147,7 @@
                 
                 @if($showLimited && count($paket_wisatas) > 3)
                 <div class="col-12 text-center mt-4">
-                    <a href="/package-%-dwp" class="btn-solid-reg popup-with-move-anim">View All Packages</a>
+                    <a href="/package-dwp" class="btn-solid-reg popup-with-move-anim">View All Packages</a>
                 </div>
                 @endif
             @endisset
@@ -194,7 +194,7 @@
                 <a class="btn-outline-reg mfp-close as-button" href="#services">BACK</a> 
                 <a class="btn-outline-reg mfp-close as-button" href="{{ route('reservasi.create', $paket->id) }}">BOOK NOW</a>
                 <br><br>
-                <a class="btn-outline-reg mfp-close as-button" href="/homestay-%-dwp">See All Homestay</a> 
+                <a class="btn-outline-reg mfp-close as-button" href="/homestay-dwp">See All Homestay</a> 
             </div>
         </div>
     </div>

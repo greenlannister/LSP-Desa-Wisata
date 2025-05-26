@@ -28,9 +28,9 @@
 
       @php
         $dashboardRoute = match (Auth::user()->level) {
-            'admin' => '/admin-%-dwp',
-            'pemilik' => '/owner-%-dwp',
-            'bendahara' => '/bendahara-%-dwp',
+            'admin' => '/admin-dwp',
+            'pemilik' => '/owner-dwp',
+            'bendahara' => '/bendahara',
             default => '/',
         };
       @endphp

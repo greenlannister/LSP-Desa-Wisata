@@ -37,11 +37,11 @@ class SiginController extends Controller
                 case 'pelanggan':
                     return redirect('/');
                 case 'bendahara':
-                    return redirect('/bendahara-%-dwp');
+                    return redirect('/bendahara-dwp');
                 case 'admin':
-                    return redirect('/admin-%-dwp');
+                    return redirect('/admin-dwp');
                 case 'pemilik':
-                    return redirect('/owner-%-dwp');
+                    return redirect('/owner-dwp');
                 default:
                     Auth::logout();
                     return redirect('/login')->withErrors('Akses tidak valid');

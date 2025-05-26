@@ -13,25 +13,25 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-dark" href="/admin-%-dwp">
+          <a class="nav-link text-dark" href="/admin-dwp">
             <i class="material-symbols-rounded opacity-5">dashboard</i>
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="/admin-%-dwp/con1">
+          <a class="nav-link text-dark" href="/admin-dwp/con1">
             <i class="material-symbols-rounded opacity-5">table_view</i>
             <span class="nav-link-text ms-1">User Manage</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="/admin-%-dwp/con2">
+          <a class="nav-link text-dark" href="/admin-dwp/con2">
             <i class="material-symbols-rounded opacity-5">table_view</i>
             <span class="nav-link-text ms-1">Desa's News Category</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="/admin-%-dwp/con3">
+          <a class="nav-link text-dark" href="/admin-dwp/con3">
             <i class="material-symbols-rounded opacity-5">table_view</i>
             <span class="nav-link-text ms-1">Desa's News</span>
           </a>

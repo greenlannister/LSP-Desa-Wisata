@@ -59,7 +59,7 @@
                         <div class="text-container">
                             <h1>DESA <span id="js-rotating">WISATA, INDONESIA, INDAH</span></h1>
                             <p class="p-heading p-large">Discover the enchanting beauty of Indonesia — a land of thousands of islands, rich cultures, and breathtaking natural wonders waiting to be explored with us.</p>
-                            <a class="btn-solid-lg page-scroll" href="/package-%-dwp">DISCOVER</a>
+                            <a class="btn-solid-lg page-scroll" href="/package-dwp">DISCOVER</a>
                         </div>
                     </div> <!-- end of col -->
                 </div> <!-- end of row -->
@@ -118,7 +118,7 @@
                     <a href="/" class="nav-link {{ $title === 'Home' ? 'active' : '' }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/about-%-dwp" class="nav-link {{ $title === 'About' ? 'active' : '' }}">About Us</a> 
+                    <a href="/about-dwp" class="nav-link {{ $title === 'About' ? 'active' : '' }}">About Us</a> 
                 </li>
                 
                 <!-- Services Dropdown (Fixed) -->
@@ -132,25 +132,25 @@
                     <!-- Dropdown Menu -->
                     <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
                         <li>
-                            <a class="dropdown-item {{ $title === 'Packages' ? 'active' : '' }}" href="/package-%-dwp">
+                            <a class="dropdown-item {{ $title === 'Packages' ? 'active' : '' }}" href="/package-dwp">
                                 Package
                             </a>
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-item {{ $title === 'Homestay' ? 'active' : '' }}" href="/homestay-%-dwp">
+                            <a class="dropdown-item {{ $title === 'Homestay' ? 'active' : '' }}" href="/homestay-dwp">
                                 Homestay
                             </a>
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-item {{ $title === 'News' ? 'active' : '' }}" href="/news-%-dwp">
+                            <a class="dropdown-item {{ $title === 'News' ? 'active' : '' }}" href="/news-dwp">
                                 News
                             </a>
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-item {{ $title === 'Discount' ? 'active' : '' }}" href="/discount-%-dwp">
+                            <a class="dropdown-item {{ $title === 'Discount' ? 'active' : '' }}" href="/discount-dwp">
                                 Discount
                             </a>
                         </li>
@@ -158,7 +158,7 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a href="/contact-%-dwp" class="nav-link {{ $title === 'Contact' ? 'active' : '' }}">Contact</a>
+                    <a href="/contact-dwp" class="nav-link {{ $title === 'Contact' ? 'active' : '' }}">Contact</a>
                 </li>
     
                 @if(Auth::check())
@@ -183,7 +183,7 @@
                     </form>
                 @else
                     <li class="nav-item">
-                        <a href="/regis-%-dwp" class="nav-link {{ $title === 'Register' ? 'active' : '' }}">Register</a>
+                        <a href="/regis-dwp" class="nav-link {{ $title === 'Register' ? 'active' : '' }}">Register</a>
                     </li>
                     <li class="nav-item">
                         <a href="/login" class="nav-link {{ $title === 'Login' ? 'active' : '' }}">Login</a>
@@ -252,16 +252,16 @@
                         <h4>Quick Links</h4>
                         <ul class="list-unstyled li-space-lg white">
                             <li>
-                                <a class="white" href="/home-%-dwp">Home</a>
+                                <a class="white" href="/home-dwp">Home</a>
                             </li>
                             <li>
-                                <a class="white" href="/about-%-dwp">About</a>
+                                <a class="white" href="/about-dwp">About</a>
                             </li>
                             <li>
-                                <a class="white" href="/service-%-dwp">Services</a>
+                                <a class="white" href="/service-dwp">Services</a>
                             </li>
                             <li>
-                                <a class="white" href="/contact-%-dwp">Contact</a>
+                                <a class="white" href="/contact-dwp">Contact</a>
                             </li>
                         </ul>
                     </div>
@@ -271,13 +271,13 @@
                         <h4>Resources</h4>
                         <ul class="list-unstyled li-space-lg">
                             <li>
-                                <a class="white" href="package-%-dwp">Packages</a>
+                                <a class="white" href="package-dwp">Packages</a>
                             </li>
                             <li>
-                                <a class="white" href="news-%-dwp">News</a>
+                                <a class="white" href="news-dwp">News</a>
                             </li>
                             <li>
-                                <a class="white" href="discount-%-dwp">Discounts</a>
+                                <a class="white" href="discount-dwp">Discounts</a>
                             </li>
                         </ul>
                     </div>
@@ -287,7 +287,7 @@
                         <h4>Members</h4>
                         <ul class="list-unstyled li-space-lg">
                             <li>
-                                <a class="white" href="/register-%-dwp">Register</a>
+                                <a class="white" href="/register-dwp">Register</a>
                             </li>
                             <li>
                                 <a class="white" href="{{ route('login') }}">Login</a>

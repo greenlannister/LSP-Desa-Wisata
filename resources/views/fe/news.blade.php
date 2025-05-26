@@ -95,7 +95,7 @@
         
         @if($showLimited && count($beritas) > 2)
         <div class="container text-center mt-4">
-            <a href="/news-%-dwp" class="btn btn-outline-success read-more-btn">Lihat Semua Berita</a>
+            <a href="/news-dwp" class="btn btn-outline-success read-more-btn">Lihat Semua Berita</a>
         </div>
         @endif
     @endisset

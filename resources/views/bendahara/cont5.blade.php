@@ -13,49 +13,49 @@
   <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link text-dark" href="/bendahara-%-dwp">
+        <a class="nav-link text-dark" href="/bendahara">
           <i class="material-symbols-rounded opacity-5">dashboard</i>
           <span class="nav-link-text ms-1">Dashboard</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark" href="/bendahara-%-dwp/cont1">
+        <a class="nav-link text-dark" href="/bendahara/cont1">
           <i class="material-symbols-rounded opacity-5">table_view</i>
           <span class="nav-link-text ms-1">Add Homestay</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark" href="/bendahara-%-dwp/cont2">
+        <a class="nav-link text-dark" href="/bendahara/cont2">
           <i class="material-symbols-rounded opacity-5">table_view</i>
           <span class="nav-link-text ms-1">Add Package</span>
         </a>
       </li>
       <li class="nav-item">
-          <a class="nav-link text-dark" href="/bendahara-%-dwp/cont5">
+          <a class="nav-link text-dark" href="/bendahara/cont5">
             <i class="material-symbols-rounded opacity-5">table_view</i>
             <span class="nav-link-text ms-1">Add Category</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="/bendahara-%-dwp/cont3">
+          <a class="nav-link text-dark" href="/bendahara/cont3">
             <i class="material-symbols-rounded opacity-5">table_view</i>
             <span class="nav-link-text ms-1">Add Object</span>
           </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark" href="/bendahara-%-dwp/cont6">
+        <a class="nav-link text-dark" href="/bendahara/cont6">
           <i class="material-symbols-rounded opacity-5">table_view</i>
           <span class="nav-link-text ms-1">Add Payment Method</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark" href="/bendahara-%-dwp/cont7">
+        <a class="nav-link text-dark" href="/bendahara/cont7">
           <i class="material-symbols-rounded opacity-5">table_view</i>
           <span class="nav-link-text ms-1">Add Discount</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark" href="/bendahara-%-dwp/cont4">
+        <a class="nav-link text-dark" href="/bendahara/cont4">
           <i class="material-symbols-rounded opacity-5">table_view</i>
           <span class="nav-link-text ms-1">Reservation</span>
         </a>
