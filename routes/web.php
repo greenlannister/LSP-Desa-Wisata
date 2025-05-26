@@ -88,40 +88,40 @@ Route::middleware(['auth'])->group(function(){
         Route::resource('/bendahara', BendaharaController::class);
 
         // Homestay
-        Route::get('/bendahara/cont1', [BendaharaController::class, 'cont1'])->name('homestay');
+        Route::get('/bendahara/dwp/cont1', [BendaharaController::class, 'cont1'])->name('homestay');
         Route::post('/homestay-manage', [BendaharaController::class, 'Homestay'])->name('homestay-management');
         Route::put('/homestay/{id}', [BendaharaController::class, 'HomestayUpdate'])->name('homestay.update');
         Route::delete('/homestay/{id}', [BendaharaController::class, 'destroyHomestay'])->name('homestay.destroy');
 
         // Paket Wisata
-        Route::get('/bendahara/cont2', [BendaharaController::class, 'cont2'])->name('paket');
+        Route::get('/bendahara/dwp/cont2', [BendaharaController::class, 'cont2'])->name('paket');
         Route::post('/paket-manage', [BendaharaController::class, 'PaketWisata'])->name('paket.management');
         Route::put('/paket-wisata/update/{id}', [BendaharaController::class, 'PaketUpdate'])->name('paket-wisata.update');
         Route::delete('/paket-wisata/delete/{id}', [BendaharaController::class, 'PaketDestroy'])->name('paket-wisata.destroy');
 
         // Objek Wisata
-        Route::get('/bendahara/cont3', [BendaharaController::class, 'cont3'])->name('obta');
+        Route::get('/bendahara/dwp/cont3', [BendaharaController::class, 'cont3'])->name('obta');
         Route::post('/obta-manage', [BendaharaController::class, 'objekWisata'])->name('obta.management');
         Route::put('/obta-wisata/update/{id}', [BendaharaController::class, 'ObtaUpdate'])->name('obta-wisata.update');
         Route::delete('/obta-wisata/delete/{id}', [BendaharaController::class, 'ObtaDestroy'])->name('obta-wisata.destroy');
 
         // Confirmation
-        Route::get('/bendahara/cont4', [BendaharaController::class, 'cont4']);
+        Route::get('/bendahara/dwp/cont4', [BendaharaController::class, 'cont4']);
 
         // Kategori Wisata
-        Route::get('/bendahara/cont5', [BendaharaController::class, 'cont5'])->name('katwis');
+        Route::get('/bendahara/dwp/cont5', [BendaharaController::class, 'cont5'])->name('katwis');
         Route::post('/katwis-manage', [BendaharaController::class, 'kategoriWisata'])->name('katwis.management');
         Route::put('/kategori-wisata/update/{id}', [BendaharaController::class, 'updateKatwis'])->name('katwis-wisata.update');
         Route::delete('/kategori-wisata/delete/{id}', [BendaharaController::class, 'destroyKatwis'])->name('katwis-wisata.destroy');
 
         // Jenis Pembayaran
-        Route::get('/bendahara/cont6', [BendaharaController::class, 'cont6'])->name('jenpe');
+        Route::get('/bendahara/dwp/cont6', [BendaharaController::class, 'cont6'])->name('jenpe');
         Route::post('/jenpe-manage', [BendaharaController::class, 'JenisPembayaran'])->name('jenpe.management');
         Route::put('/jenis-pembayaran/update/{id}', [BendaharaController::class, 'updateJenpe'])->name('jenis-pembayaran.update');
         Route::delete('/jenis-pembayaran/delete/{id}', [BendaharaController::class, 'destroyJenpe'])->name('jenis-pembayaran.destroy');
 
         // Diskon
-        Route::get('/bendahara/cont7', [BendaharaController::class, 'cont7'])->name('diskon');
+        Route::get('/bendahara/dwp/cont7', [BendaharaController::class, 'cont7'])->name('diskon');
         Route::post('/diskon-manage', [BendaharaController::class, 'Diskon'])->name('diskon.management');
         Route::put('/diskon/update/{id}', [BendaharaController::class, 'updateDiskon'])->name('diskon.update');
         Route::delete('/diskon/delete/{id}', [BendaharaController::class, 'destroyDiskon'])->name('diskon.destroy');
